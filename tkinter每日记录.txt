@@ -1,0 +1,123 @@
+1.如果要获取Entry中的值：
+e1 = Entry(root)   e1.grid(……)
+而不是：e1 = Entry(root).grid(……)
+
+2.想要观察多选框被勾选后的值，可以：
+v = int()
+check_all = Checkbutton(root, text="All", variable=v)
+label_show = Label(root, textvariable=v)
+
+3.多选框如果要禁用，加入disabled属性
+check_all = Checkbutton(root, text="All", variable=v, state="disabled")
+
+4.使用grid管理器，要想让空间靠左，需要加上sticky属性：
+check_all.grid(row=0, column=0, sticky=W);
+如果是pack()方法，使用的是anchor=W
+
+5.复选框如果要指定变量v，v=IntVar()必需在root=/Tk()后面
+
+6.Checkbutton自己有值：On和Off值，缺省状态On为1，Off为0
+
+7.由于 Checkbutton 可以同时选中多项，因此程序需要为每个 Checkbutton 都绑定一个变量。
+
+8.如果想要获取Checkbutton的值，可以添加属性onvalue，当添加了onvalue的属性后，如果要设置此CheckButton的默认值，需要删除onvalue
+
+9.设置CheckButton的默认值：
+chkValue = BooleanVar()
+chkValue.set(True)
+chkExample = Checkbutton(root, text="all", var=chkValue)
+
+10.get()和set()方法都是IntVar()、StringVar()、BooleanVar()变量的
+
+11.全选/全不选的方法是加在all上面的，只需要给all选项加入此方法，其余选项不用
+
+12.勾选任一非all选项，改变all选项的状态，这个方法是加在非all选项上的
+
+13.修改PAGE软件生成的代码时，拷贝的是.py文件，删除的部分有：
+（1）从import unknown_support 到 class 上一行，全部删掉，在此位置新添加一行代码：top = tk.Tk()
+（2）删除class类中的方法、类名等等，然后修改格式shift+tab
+（3）删除所有的  self.  ，ctrl+r 替换
+（4）注释掉包含"unknown_support "的语句
+（5）最后一行 main 方法删除，在此位置新添加一行代码:top.mainloop()
+
+14.修改背景色：
+核心代码是：configure(background……
+background这一行
+
+15.一键获取这种功能，CheckButton是var，TEntry是textvariable
+
+16.keyCode：OverSeas.xml、JP……
+
+17.按钮可点击，state="active"；不可点击，state="disabled"
+
+18.使用zip函数, 把key和value的list组合在一起, 再转成字典(dict).
+
+keys = ['a', 'b', 'c']
+values = [1, 2, 3]
+dictionary = dict(zip(keys, values))
+print dictionary
+"""
+输出:
+{'a': 1, 'c': 3, 'b': 2}
+"""
+
+19.为测试用例，加上滚动条，是不能直接在listBox里加的，listBox里只能展示文本，listBix应该要属于某个frame，这个frame上可以添加滚动条
+
+20.command方法，是点击控件的时候调用的方法
+控件.bind(event, handler)，事件event是指定了的事件，比如：鼠标点击左键
+
+21.想要Spinbox中的文本框，不能获取焦点=readonly，要加上一行：
+state = "readonly"；想要up和down键循环加载脚本，要加上：
+wrap="True"
+
+
+22.想要调整布局，默认打开是全屏状态，root = Tk()  
+root .state("zoomed")
+
+23.获取SpinBox此条名称，log_info = lb.get(lb.curselection())
+
+24.当获取到值后，如果要让输入框不可输入，且里面显示的文字是黑色的，比较亮的，需要加入
+TEntry1.configure(foreground="#000000")
+TEntry1.configure(background="#000060")
+
+25.点击运行脚本后，出现当前框体未响应的状态，是因为需要开启线程。
+
+26.time.ctime()可以获取到当前的时间：Wed Aug 21 09:24:03 2019
+
+27.线程中，setDaemon()方法默认是False，主线程执行完毕后，要等待各个线程执行完毕后，才结束整个python。如果设置为了True，当主线程运行结束后，即使各个线程没有执行完毕，都会结束整个python。
+
+28.为一个线程的t添加了join()方法，会影响主线程的进度，主线程在join之后的方法，会等待t执行完成后，才会调用。
+
+
+29.分割线TSeparator、下拉框Combobox是ttk才有的控件，tk没有
+
+30.展示图片用到了：pip install matplotlib
+import matplotlib.pyplot as plt
+
+result1 = re.findall(r"D:\\BaseBox\\TCache[\\\a-zA-Z_-]*bmp", string)
+img = plt.imread(result1[0])
+plt.imshow(img)
+plt.show()
+
+
+31.获取cmd运行py文件的打印信息，如果一直获取不到，File-Settings->Editor->File Encodings
+把Global Encoding设置成GBK即可，之前是UTF-8，UTF-8一直获取不到
+
+32.Listbox中，有不断添加的文本，需要默认显示在最后一行时，
+lb_log.insert(tk.END, info)
+lb_log.see(tk.END)
+
+
+33.报错  SyntaxError: Non-UTF-8 code starting with '\xc9' in file，
+是需要在程序最上面加上     # coding=gbk
+
+34.读取一个json文件中的信息
+with open(r"F:\config.json") as fp:
+    dict_config = json.load(fp)
+
+35.生成exe时，pip install numpy==1.16.2
+
+36.获取本地Python.exe所在的目录
+print(sys.base_prefix)
+拿到它的上一级
+print(os.path.dirname(sys.base_prefix))
